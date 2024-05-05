@@ -1,0 +1,11 @@
+[user]
+	name = Andy Pak
+	email = 147354924+PakmanGames@users.noreply.github.com
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[pull]
+	rebase = false
+[core]
+	editor = code --wait

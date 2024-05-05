@@ -1,0 +1,250 @@
+# PakmanGames' i3 config file
+
+# Set mod key as Alt
+set $mod Mod1
+
+# Set font
+font pango:CMU Sans Serif Bold 15px
+
+# Autostart i3
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+# Open terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Close focused window
+bindsym $mod+Shift+q kill
+
+# Change focused window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Change focused window (Arrow keys)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Move focused window (Arrow keys)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+b split h
+# Split in vertical orientation
+bindsym $mod+v split v
+# Focus the parent container
+bindsym $mod+x focus parent
+# Focus the child container
+bindsym $mod+c focus child
+
+# Enter fullscreen mode for focused window
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating window
+bindsym $mod+space floating toggle
+# Change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# Workspace Names and Icons
+# Chrome
+set $ws1 "1 "
+# Terminal
+set $ws2 "2 "
+# Discord
+set $ws3 "3 "
+# Code File
+set $ws4 "4 "
+# Code
+set $ws5 "5 "
+# Folder Open
+set $ws6 "6 "
+# Desktop
+set $ws7 "7 "
+# Desktop
+set $ws8 "8 "
+# Desktop
+set $ws9 "9 "
+# Desktop
+set $ws10 "10 "
+
+# Alias for feh
+set $feh exec --no-startup-id feh --bg-scale
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1 ; $feh ~/wallpapers/1.png
+bindsym $mod+2 workspace number $ws2 ; $feh ~/wallpapers/2.png
+bindsym $mod+3 workspace number $ws3 ; $feh ~/wallpapers/3.png
+bindsym $mod+4 workspace number $ws4 ; $feh ~/wallpapers/4.png
+bindsym $mod+5 workspace number $ws5 ; $feh ~/wallpapers/5.png
+bindsym $mod+6 workspace number $ws6 ; $feh ~/wallpapers/6.png
+bindsym $mod+7 workspace number $ws7 ; $feh ~/wallpapers/7.png
+bindsym $mod+8 workspace number $ws8 ; $feh ~/wallpapers/8.png
+bindsym $mod+9 workspace number $ws9 ; $feh ~/wallpapers/9.png
+bindsym $mod+0 workspace number $ws10 ; $feh ~/wallpapers/10.png
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Assign workspaces to each application
+assign [class="firefox"] $ws2
+assign [class="Spotify"] $ws3
+assign [class="discord"] $ws3
+
+# Monitor Names
+set $m1 Virtual1
+set $m2 Virtual2
+
+# Assign workspaces to each monitor
+workspace $ws1 output $m1
+workspace $ws2 output $m2
+workspace $ws3 output $m2
+workspace $ws4 output $m1
+workspace $ws5 output $m1
+workspace $ws6 output $m1
+workspace $ws7 output $m1
+workspace $ws8 output $m1
+workspace $ws9 output $m2
+workspace $ws10 output $m2
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# Exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Enter resize
+bindsym $mod+r mode "resize"
+# Resize window
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
+
+        # (Arrow Keys)
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # Back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# Container colours
+set $bg-color                   #2f343f
+set $inactive-bg-color          #2f343f
+set $text-color                 #f3f4f5
+set $inactive-text-color        #676E7D
+set $urgent-bg-color            #E53935
+set $indicator                  #00ff00
+
+#container              border colour           background colour       text colour             indicator
+client.focused          $bg-color               $bg-color               $text-color             $indicator
+client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
+client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $indicator
+client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $indicator
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        # Set monitor outpits
+        output $m1
+        output $m2
+
+        # Custom i3blocks status
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+        # Colouring of features on workspace
+        colors {
+                background $bg-color
+                separator #757575
+
+                # workspace             border colour           background colour       text colour
+                focused_workspace       $bg-color               $bg-color               $text-color
+                inactive_workspace      $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+                urgent_workspace        $urgent-bg-color        $urgent-bg-color        $text-color
+        }
+        workspace_min_width 50
+        # workspace_command ~/.config/i3/i3workspace.sh
+}
+
+# Start dmenu
+# bindsym $mod+d exec --no-startup-id dmenu_run
+# Start rofi
+bindsym $mod+d exec rofi -show run -lines 2 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "CMU Sans Serif Bold 15px"
+
+# Lock Screen
+bindsym $mod+shift+x exec i3lock
+
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# # Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# # Sreen brightness controls
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# # Touchpad controls
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+# bindsym XF86AudioPause exec playerctl pause
+# bindsym XF86AudioNext exec playerctl next
+# bindsym XF86AudioPrev exec playerctl previous
+
+# Binding to run flameshot
+bindsym Print exec flameshot gui
+
+# Run these commands on startup
+exec imwheel -b "4 5"
+exec compton
+
+exec spotify
+exec discord
+exec google-chrome
