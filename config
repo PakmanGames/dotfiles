@@ -85,20 +85,21 @@ set $ws9 "9 "
 # Desktop
 set $ws10 "10 "
 
-# Alias for feh
-set $feh exec --no-startup-id feh --bg-scale
+# Alias for feh for monitor 1 and monitor 2
+set $feh1 exec --no-startup-id feh --bg-scale
+# set $feh2 exec --no-startup-id DISPLAY=:0.1 feh --bg-scale
 
 # Switch to workspace
-bindsym $mod+1 workspace number $ws1 ; $feh ~/wallpapers/1.png
-bindsym $mod+2 workspace number $ws2 ; $feh ~/wallpapers/2.png
-bindsym $mod+3 workspace number $ws3 ; $feh ~/wallpapers/3.png
-bindsym $mod+4 workspace number $ws4 ; $feh ~/wallpapers/4.png
-bindsym $mod+5 workspace number $ws5 ; $feh ~/wallpapers/5.png
-bindsym $mod+6 workspace number $ws6 ; $feh ~/wallpapers/6.png
-bindsym $mod+7 workspace number $ws7 ; $feh ~/wallpapers/7.png
-bindsym $mod+8 workspace number $ws8 ; $feh ~/wallpapers/8.png
-bindsym $mod+9 workspace number $ws9 ; $feh ~/wallpapers/9.png
-bindsym $mod+0 workspace number $ws10 ; $feh ~/wallpapers/10.png
+bindsym $mod+1 workspace number $ws1 ; $feh1 ~/wallpapers/1.png
+bindsym $mod+2 workspace number $ws2 ; $feh1 ~/wallpapers/2.png
+bindsym $mod+3 workspace number $ws3 ; $feh1 ~/wallpapers/3.png
+bindsym $mod+4 workspace number $ws4 ; $feh1 ~/wallpapers/4.png
+bindsym $mod+5 workspace number $ws5 ; $feh1 ~/wallpapers/5.png
+bindsym $mod+6 workspace number $ws6 ; $feh1 ~/wallpapers/6.png
+bindsym $mod+7 workspace number $ws7 ; $feh1 ~/wallpapers/7.png
+bindsym $mod+8 workspace number $ws8 ; $feh1 ~/wallpapers/8.png
+bindsym $mod+9 workspace number $ws9 ; $feh1 ~/wallpapers/9.png
+bindsym $mod+0 workspace number $ws10 ; $feh1 ~/wallpapers/10.png
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -213,13 +214,6 @@ bindsym $mod+d exec rofi -show run -lines 2 -eh 2 -width 100 -padding 800 -opaci
 # Lock Screen
 bindsym $mod+shift+x exec i3lock
 
-# Use pactl to adjust volume in PulseAudio.
-# set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
 # # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -234,9 +228,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
-# bindsym XF86AudioPause exec playerctl pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
+bindsym Ctrl+Shift+Down exec playerctl pause
 
 # Binding to run flameshot
 bindsym Print exec flameshot gui
