@@ -113,3 +113,4 @@ if ! shopt -oq posix; then
 fi
 
 eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/catppuccin.omp.json)"
+neofetch
