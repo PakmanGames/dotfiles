@@ -1,0 +1,1 @@
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
