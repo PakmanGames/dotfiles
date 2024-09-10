@@ -114,3 +114,5 @@ fi
 
 eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/catppuccin.omp.json)"
 neofetch
+
+PATH=~/apache-maven-3.9.9/bin:$PATH
