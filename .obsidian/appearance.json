@@ -1,0 +1,18 @@
+{
+  "accentColor": "#8a5cf5",
+  "theme": "obsidian",
+  "cssTheme": "Tokyo Night",
+  "interfaceFontFamily": "JetBrains Mono NL,FiraCode Nerd Font Mono",
+  "textFontFamily": "JetBrains Mono NL,FiraCode Nerd Font Mono",
+  "enabledCssSnippets": [
+    "Colored Sidebar Items",
+    "colored-sidebar-items",
+    "bullet-point-relationship-lines",
+    "smaller-scrollbar",
+    "dashboard"
+  ],
+  "monospaceFontFamily": "JetBrains Mono NL",
+  "baseFontSizeAction": false,
+  "baseFontSize": 16,
+  "showViewHeader": true
+}

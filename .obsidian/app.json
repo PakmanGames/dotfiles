@@ -1,0 +1,14 @@
+{
+  "livePreview": false,
+  "showLineNumber": false,
+  "showUnsupportedFiles": false,
+  "showRibbon": true,
+  "promptDelete": false,
+  "alwaysUpdateLinks": true,
+  "defaultViewMode": "source",
+  "propertiesInDocument": "hidden",
+  "showInlineTitle": false,
+  "userIgnoreFilters": [
+    "99 - templates/"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "FasBatteryEmpty",
+      "LiLayoutTemplate",
+      "FasCalendar",
+      "FasTv",
+      "FasBoxArchive"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false
+  },
+  "00 - home": "FasHouseChimney",
+  "02 - projects": "FasFileCode",
+  "01 - daily": "FasCalendar",
+  "03 - resources": "FasBook",
+  "04 - school": "FasSchool",
+  "06 - areas": "FasCube",
+  "09 - archives": "FasBoxArchive",
+  "07 - media": "FasTv",
+  "99 - templates": "LiLayoutTemplate",
+  "08 -": "FasBatteryEmpty",
+  "05 - permanent": "FasDatabase"
+}
