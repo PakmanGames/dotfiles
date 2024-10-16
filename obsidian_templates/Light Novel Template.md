@@ -1,5 +1,5 @@
 ---
-tags: [book, lightnovel]
+tags: [book, lightnovel, review]
 ---
 # {Volume Name and Number}
 ## {Volume Title}

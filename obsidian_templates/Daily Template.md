@@ -2,7 +2,8 @@
 tags: [daily]
 ---
 # {{date}}
-> ###### {{time}}
+###### {{time}}
+##### [[<% tp.date.now("gggg-[Week-]ww") %>]]
 ---
 #### How are you feeling?
 
