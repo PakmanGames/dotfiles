@@ -1,5 +1,5 @@
 ---
-tags: [index, book, lightnovel]
+tags: [index, book, lightnovel, review]
 ---
 # {Series Title}
 ## {Author}
