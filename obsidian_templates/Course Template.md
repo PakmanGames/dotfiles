@@ -2,7 +2,6 @@
 tags: [university, course]
 ---
 # {{title}}
-#### About: [[{{title}} Outline]]
 ---
 # Important Dates
 

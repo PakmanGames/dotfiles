@@ -3,6 +3,7 @@ tags: [weekly, TODO]
 ---
 # Week `=dateformat(date(today), "W")`
 ## Today is `=link(dateformat(date(today), "cccc, MMMM dd yyyy"))`
+###### [[<% tp.date.now("gggg [Index]") %>]]
 
 #### Tasks
   ```dataview
@@ -16,7 +17,7 @@ tags: [weekly, TODO]
 - [ ] TODO
 
 #### Other TODOs
-  ```dataview
-  table without id file.link as Other-TODOs from #TODO
-  where !contains(file.path, "99 - templates/")
-  ```
+```dataview
+table without id file.link as Other-TODOs from #TODO
+where !contains(file.path, "99 - templates/")
+```
