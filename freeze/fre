@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# config stuff
+CONFIG="$HOME/.config/freeze/custom.json"
+THEME_LIGHT="catppuccin-latte"
+THEME_DARK="catppuccin-mocha"
+
+usage() {
+  cat <<'EOF'
+Usage: fre <file|basename> [-o OUTPUT_NAME] [-d] [-h]
+  fre FILENAME           -> uses light theme, outputs FILENAME.png
+  fre FILENAME -o NAME   -> outputs NAME.png
+  fre FILENAME -d        -> uses dark theme (THEME_DARK)
+Notes:
+- FILENAME may be "path/to/file.ext" or just "path/to/file" (we'll try to find a unique *.ext).
+EOF
+}
+
+# parse options anywhere
+output=""
+dark=0
+args=()
+while (( $# )); do
+  case "$1" in
+    -o) shift; [[ $# -ge 1 ]] || { echo "fre: -o needs a name" >&2; exit 2; }
+        output="$1"; shift ;;
+    -d) dark=1; shift ;;
+    -h|--help) usage; exit 0 ;;
+    --) shift; args+=("$@"); break ;;
+    -*) echo "fre: unknown option: $1" >&2; usage; exit 2 ;;
+    *) args+=("$1"); shift ;;
+  esac
+done
+(( ${#args[@]} == 1 )) || { usage; exit 2; }
+
+target="${args[1]}"
+
+# resolve input file (allow basename without extension)
+if [[ "$target" == *.* && -f "$target" ]]; then
+  infile="$target"
+else
+  setopt nullglob
+  matches=("$target".*)
+  unsetopt nullglob
+  (( ${#matches[@]} == 1 )) || { echo "fre: can't uniquely resolve '$target' (found ${#matches[@]} matches). Pass the full filename with extension." >&2; exit 1; }
+  infile="${matches[1]}"
+fi
+
+# output name
+base="${infile:t:r}"
+out="${output:-$base}"
+out="${out%.png}.png"
+
+# theme
+theme="$THEME_LIGHT"
+(( dark )) && theme="$THEME_DARK"
+
+# sanity
+command -v freeze >/dev/null || { echo "fre: 'freeze' not found in PATH" >&2; exit 127; }
+
+# run
+freeze -c "$CONFIG" --theme "$theme" -o "$out" "$infile"
+# echo "wrote $out" # Just for testing
