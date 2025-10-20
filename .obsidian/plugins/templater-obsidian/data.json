@@ -7,7 +7,7 @@
       ""
     ]
   ],
-  "trigger_on_file_creation": false,
+  "trigger_on_file_creation": true,
   "auto_jump_to_cursor": false,
   "enable_system_commands": false,
   "shell_path": "",
@@ -15,8 +15,16 @@
   "enable_folder_templates": true,
   "folder_templates": [
     {
-      "folder": "",
-      "template": ""
+      "folder": "/",
+      "template": "99 - templates/~ Note Template.md"
+    },
+    {
+      "folder": "01 - daily/2025",
+      "template": "99 - templates/Daily Template.md"
+    },
+    {
+      "folder": "01 - daily",
+      "template": "99 - templates/Daily Template.md"
     }
   ],
   "enable_file_templates": false,
