@@ -1,0 +1,11 @@
+{
+  "replaceBlocks": true,
+  "selectBlockAvoidsPrefixes": true,
+  "selectAllIfUnchanged": true,
+  "selectFullCodeBlock": true,
+  "showCheckboxSuggestions": false,
+  "checkboxVariants": " x><!-/?*nliISpcb\"0123456789",
+  "showCalloutSuggestions": true,
+  "calloutSuggestions": "note, summary, info, todo, tip, check, help, warning, fail, error, bug, example, quote",
+  "enableSelectBlockEE": true
+}

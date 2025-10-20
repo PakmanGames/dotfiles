@@ -31,17 +31,18 @@
     "iconsInLinksEnabled": true,
     "iconIdentifier": ":",
     "lucideIconPackType": "native",
-    "debugMode": false
+    "debugMode": false,
+    "useInternalPlugins": false
   },
   "00 - home": "FasHouseChimney",
   "02 - projects": "FasFileCode",
   "01 - daily": "FasCalendar",
-  "03 - resources": "FasBook",
   "04 - school": "FasSchool",
   "06 - areas": "FasCube",
   "09 - archives": "FasBoxArchive",
   "07 - media": "FasTv",
   "99 - templates": "LiLayoutTemplate",
   "08 -": "FasBatteryEmpty",
-  "05 - permanent": "FasDatabase"
+  "05 - permanent": "FasDatabase",
+  "03 -": "FasBook"
 }
