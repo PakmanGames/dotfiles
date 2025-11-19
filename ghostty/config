@@ -1,0 +1,8 @@
+theme = Catppuccin Mocha
+font-family = "Geist Mono"
+font-size = 19
+font-feature = -dlig
+font-feature = -liga
+background-opacity = 0.8
+background-blur-radius = 30
+keybind = global:cmd+shift+space=toggle_quick_terminal
