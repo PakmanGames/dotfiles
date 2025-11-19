@@ -1,0 +1,32 @@
+add_newline = false
+format = """\
+  $directory\
+  $git_branch$git_commit$git_state$git_status\
+  $character\
+"""
+
+[character]
+success_symbol = "[ >]($bold fg:#f8f8f2)"
+error_symbol = "[ >]($bold fg:#fb4934)"
+
+[directory]
+disabled = false
+format = "[ $path](bold fg:#ff79c6)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_status]
+format = " ([$all_status$ahead_behind](bold fg:#8be9fd))"
+staged = "• "
+modified = "~ "
+untracked = "+ "
+deleted = "x "
+
+[git_branch]
+format = " [ $branch](bold fg:#8be9fd)"
