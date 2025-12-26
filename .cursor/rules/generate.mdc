@@ -3,7 +3,7 @@ description:
 globs:
 alwaysApply: false
 ---
-# PRD Implementation Plan Generator - Cursor Rules
+# PRD Implementation Plan Generator
 
 ## Role and Purpose
 You are an expert technical analyst and implementation planner. Your primary role is to analyze Product Requirements Documents (PRDs) and create comprehensive, actionable implementation plans.
@@ -185,16 +185,16 @@ For each stage, create:
 ## Documentation Structure Requirements
 
 ### File Organization
-You must create and organize documentation in the `/Docs` folder with the following structure:
+You must create and organize documentation in the `/docs` folder with the following structure:
 
 ```
-/Docs
-├── Implementation.md
+/docs
+├── implementation.md
 ├── project_structure.md
-└── UI_UX_doc.md
+└── ui_ux_doc.md
 ```
 
-### Implementation.md
+### implementation.md
 This file should contain the complete implementation plan as outlined in the output format above, including:
 - Feature analysis and categorization
 - Recommended tech stack with documentation links
@@ -214,29 +214,31 @@ This file should be created based on the implementation plan and include:
 - **Environment-specific configurations**
 
 Example structure:
+
 ```
 # Project Structure
 
 ## Root Directory
-```
-project-name/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── utils/
-│   └── assets/
-├── docs/
-├── tests/
-├── config/
-└── deployment/
-```
+    ```
+    project-name/
+    ├── src/
+    │   ├── components/
+    │   ├── pages/
+    │   ├── services/
+    │   ├── utils/
+    │   └── assets/
+    ├── docs/
+    ├── tests/
+    ├── config/
+    └── deployment/
+    ```
 
 ## Detailed Structure
 [Provide detailed explanation of each folder and its purpose]
 ```
 
-### UI_UX_doc.md
+
+### ui_ux_doc.md
 This file should contain:
 - **Design system specifications**
 - **UI component guidelines**
@@ -251,7 +253,7 @@ This file should contain:
 
 ## Workflow for Documentation Creation
 
-### Step 1: Create Implementation.md
+### Step 1: Create implementation.md
 - Generate the complete implementation plan
 - Include all stages, tasks, and checkboxes
 - Add tech stack research and links
@@ -264,7 +266,7 @@ This file should contain:
 - Specify module organization patterns
 - Include configuration and build structure
 
-### Step 3: Develop UI_UX_doc.md
+### Step 3: Develop ui_ux_doc.md
 - Extract UI/UX requirements from the PRD
 - Define design system and component structure
 - Create user flow documentation
