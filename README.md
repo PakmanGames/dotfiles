@@ -4,11 +4,17 @@ My personal dotfiles and configuration files for various development environment
 
 ## Repository Structure
 
-- `obsidian_templates/` - Templates for Obsidian note-taking
+- `.codex/` - GPT Codex prompts
+- `.cursor/` - Cursor rules and commands
 - `.obsidian/` - Obsidian config files and plugins
-- `wsl-debian/` - Config files for my Debian WSL environment
-- `ubuntu-vm/` - Config files for my Ubuntu virtual machine
+- `obsidian_templates/` - Templates for Obsidian note-taking
+- `anki/` - FSRS parameters for my decks
+- `freeze/` - Config for freeze and a bash script to try each theme
+- `ghostty/` - Config for ghostty my terminal emulator
 - `ruby-install/` - rbenv and Ruby installation and config files
+- `starship/` - Config for Starship
+- `ubuntu-vm/` - Config files for my Ubuntu virtual machine
+- `wsl-debian/` - Config files for my Debian WSL environment
 
 ### Setup
 
