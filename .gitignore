@@ -1,4 +1,21 @@
-# obsidian workspace.json
-.obsidian/workspace.json
+# OS / download junk
+.DS_Store
+*:Zone.Identifier
 
+# Obsidian workspace + generated example output
+.obsidian/workspace.json
 freeze/examples/
+
+# Obsidian: ignore re-downloadable plugin code, keep settings (data.json) and
+# user data (e.g. obsidian-completr word lists)
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+.obsidian/plugins/*/manifest.json
+.obsidian/plugins/*/distVersion.json
+.obsidian/plugins/obsidian-advanced-slides/dist/
+.obsidian/plugins/obsidian-advanced-slides/plugin/
+.obsidian/plugins/obsidian-advanced-slides/css/
+.obsidian/plugins/obsidian-advanced-slides/template/
+
+# Obsidian: downloaded icon-pack archives (extracted SVGs are kept)
+.obsidian/icons/*.zip
