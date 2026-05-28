@@ -16,9 +16,6 @@ Running list of follow-up work. See `README.md` for current setup instructions.
       `.cursor/` now also contains `skills/` (not just rules and commands).
 - [ ] **Add an install mechanism** (e.g. GNU Stow, `dotbot`, or an `install.sh`)
       so the configs deploy with symlinks instead of one manual `ln` per tool.
-- [ ] **(Optional) Shrink `.git` history.** Untracking the Obsidian plugin code
-      removed it going forward, but the old blobs (~49M) still live in history.
-      A `git filter-repo` pass would shrink clone size (destructive — rewrites history).
 
 ## Apps installed but NOT available via Homebrew
 
