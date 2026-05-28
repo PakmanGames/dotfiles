@@ -5,7 +5,7 @@ font-feature = -dlig
 font-feature = -liga
 background-opacity = 0.8
 background-blur-radius = 30
-keybind = global:cmd+shift+space=toggle_quick_terminal
+keybind = global:cmd+shift+L=toggle_quick_terminal
 keybind = cmd+shift+F=new_split:down
 window-height = 25
 window-width = 100
