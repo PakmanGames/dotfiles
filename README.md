@@ -16,7 +16,7 @@ See [`TODO.md`](TODO.md) for outstanding work (per-app docs, install script, App
 - `freeze/` — Config for [freeze](https://github.com/charmbracelet/freeze) plus a script to preview every theme
 - `ghostty/` — Config for the Ghostty terminal emulator
 - `karabiner/` — Karabiner-Elements key remapping config (macOS)
-- `ruby-install/` — one-shot `install.sh` that sets up rbenv + Ruby on Debian/Ubuntu (VM/WSL)
+- `ruby-install/` — one-shot rbenv + Ruby installers: `install.sh` (Debian/Ubuntu, VM/WSL) and `install-macos.sh` (macOS, via Homebrew)
 - `starship/` — Config for the [Starship](https://starship.rs) prompt
 - `ubuntu-vm/` — Config files for my Ubuntu virtual machine
 - `wsl-debian/` — Config files for my Debian WSL environment
