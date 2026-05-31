@@ -12,8 +12,6 @@ Running list of follow-up work. See `README.md` for current setup instructions.
 - [ ] **Reproduce App Store / Apple-only apps.** They can't be installed as casks
       (see list below). Optionally add the `mas` CLI (`brew "mas"` + `mas "<id>"`
       entries) to capture the ones that live in the Mac App Store.
-- [ ] **Refresh `README.md`** — the structure list is missing `karabiner/`, and
-      `.cursor/` now also contains `skills/` (not just rules and commands).
 - [ ] **Add an install mechanism** (e.g. GNU Stow, `dotbot`, or an `install.sh`)
       so the configs deploy with symlinks instead of one manual `ln` per tool.
 
