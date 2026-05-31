@@ -9,11 +9,22 @@ Running list of follow-up work. See `README.md` for current setup instructions.
       `Brewfile` (e.g. a table in `README.md` or a `docs/apps.md`), plus a line on
       what each top-level config dir is for (`ghostty/`, `karabiner/`, `starship/`,
       `.obsidian/`, etc.).
-- [ ] **Reproduce App Store / Apple-only apps.** They can't be installed as casks
-      (see list below). Optionally add the `mas` CLI (`brew "mas"` + `mas "<id>"`
-      entries) to capture the ones that live in the Mac App Store.
-- [ ] **Add an install mechanism** (e.g. GNU Stow, `dotbot`, or an `install.sh`)
-      so the configs deploy with symlinks instead of one manual `ln` per tool.
+- [ ] **Extend `install.sh` with the remaining setup steps.** `install.sh` (repo
+      root) already bootstraps Xcode command line tools + Homebrew, then runs
+      `brew bundle` to install all brews, casks, VS Code extensions, and npm
+      globals. Fold the rest in next, as separate incremental commits:
+  - [ ] **Config symlinks** — link `.gitconfig`, `ghostty/`, `starship/`, and
+        `karabiner/` into place, replacing the manual `ln -s` block in
+        `README.md`. Back up any existing real file and skip when the correct
+        symlink already exists. Karabiner stays a file-level link (it writes
+        runtime data into `~/.config/karabiner/`).
+  - [ ] **Mac App Store apps via `mas`** — add `brew "mas"` plus `mas "<name>", id:`
+        entries for the App Store apps listed below; capture IDs with `mas list`.
+  - [ ] **Ruby (rbenv)** — call `ruby-install/install-macos.sh` from `install.sh`
+        so rbenv + the pinned Ruby are set up in the same run.
+  - [ ] **macOS defaults** — apply chosen system preferences via `defaults write`
+        (key repeat rate, Dock autohide, Finder show extensions, tap-to-click,
+        screenshot location, etc.); decide the exact set when we build it.
 
 ## Apps installed but NOT available via Homebrew
 
