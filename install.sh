@@ -57,7 +57,10 @@ ensure_homebrew() {
 # idempotent workhorse of the setup.
 install_apps() {
   log "Installing apps and tools from Brewfile"
-  brew bundle --file="$BREWFILE"
+  # Don't let one flaky download (e.g. a dropped Microsoft CDN transfer) abort
+  # the whole run under `set -e`. brew bundle is idempotent, so re-running picks
+  # up whatever failed; let later main() steps proceed in the meantime.
+  brew bundle --file="$BREWFILE" || log "Some Brewfile entries failed (likely network) — re-run to retry"
 }
 
 main() {
