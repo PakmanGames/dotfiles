@@ -20,8 +20,9 @@ Running list of follow-up work. See `README.md` for current setup instructions.
         runtime data into `~/.config/karabiner/`).
   - [ ] **Mac App Store apps via `mas`** — add `brew "mas"` plus `mas "<name>", id:`
         entries for the App Store apps listed below; capture IDs with `mas list`.
-  - [ ] **Ruby (rbenv)** — call `ruby-install/install-macos.sh` from `install.sh`
-        so rbenv + the pinned Ruby are set up in the same run.
+  - [x] **Ruby (rbenv)** — call `ruby-install/install-macos.sh` from `install.sh`
+        so rbenv + the pinned Ruby are set up in the same run. *(opt-in prompt;
+        runs as a child process so a failure won't abort the rest of setup.)*
   - [ ] **macOS defaults** — apply chosen system preferences via `defaults write`
         (key repeat rate, Dock autohide, Finder show extensions, tap-to-click,
         screenshot location, etc.); decide the exact set when we build it.

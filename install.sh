@@ -90,11 +90,25 @@ install_apps() {
   fi
 }
 
+# Hand off to the standalone rbenv + Ruby installer. It's idempotent and does
+# its own Homebrew/Xcode checks, so re-running is cheap, but compiling a fresh
+# Ruby costs 10-15 minutes — hence the opt-in prompt. Run as a child process so
+# its `set -e`/early `exit` can't abort this script; a failure here shouldn't
+# undo the apps already installed above.
+install_ruby() {
+  if ! confirm "Set up Ruby via rbenv now? (downloads and compiles Ruby, ~10-15 min)" "n"; then
+    log "Skipping Ruby setup — run ruby-install/install-macos.sh later if you want it"
+    return 0
+  fi
+  "$REPO_ROOT/ruby-install/install-macos.sh" || log "Ruby setup failed — re-run ruby-install/install-macos.sh to retry"
+}
+
 main() {
   ensure_xcode_clt
   ensure_homebrew
   install_apps
-  # Future steps (config symlinks, mas, Ruby, macOS defaults) slot in here.
+  install_ruby
+  # Future steps (config symlinks, mas, macOS defaults) slot in here.
   log "Done — apps and tools installed."
 }
 
