@@ -4,7 +4,8 @@
 #
 # Bootstraps the build toolchain (Xcode command line tools + Homebrew), then
 # installs every app and CLI tool declared in the repo's Brewfile in one shot:
-# brews, casks, VS Code extensions, and npm globals.
+# brews, casks, npm globals, and — if you opt in at the prompt — VS Code
+# extensions (those also sync automatically when you sign in to VS Code).
 #
 # Built to grow. Later setup steps (config symlinks, Mac App Store apps via mas,
 # Ruby via ruby-install/install-macos.sh, macOS defaults) hang off the same
@@ -23,6 +24,24 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$REPO_ROOT/Brewfile"
 
 log() { printf '\033[1;34m==>\033[0m %s\n' "$1"; }
+
+# Ask a yes/no question and return 0 for yes, 1 for no. $2 is the default answer
+# ("y" or "n") used when the user just presses Enter. Non-interactive runs (no
+# TTY on stdin, e.g. piped) skip the prompt and take the default, so the script
+# stays automatable.
+confirm() {
+  local prompt="$1" default="${2:-n}" reply hint="[y/N]"
+  [ "$default" = "y" ] && hint="[Y/n]"
+  if [ ! -t 0 ]; then
+    [ "$default" = "y" ]
+    return
+  fi
+  read -r -p "$(printf '\033[1;34m==>\033[0m %s %s ' "$prompt" "$hint")" reply
+  case "${reply:-$default}" in
+    [yY] | [yY][eE][sS]) return 0 ;;
+    *) return 1 ;;
+  esac
+}
 
 # Xcode command line tools provide the compiler toolchain Homebrew and many
 # formulae build against. xcode-select -p exits non-zero when they're missing;
@@ -60,7 +79,15 @@ install_apps() {
   # Don't let one flaky download (e.g. a dropped Microsoft CDN transfer) abort
   # the whole run under `set -e`. brew bundle is idempotent, so re-running picks
   # up whatever failed; let later main() steps proceed in the meantime.
-  brew bundle --file="$BREWFILE" || log "Some Brewfile entries failed (likely network) — re-run to retry"
+  local hint="Some Brewfile entries failed (likely network) — re-run to retry"
+  if confirm "Install VS Code extensions? (they also sync when you sign in to VS Code)" "n"; then
+    brew bundle --file="$BREWFILE" || log "$hint"
+  else
+    log "Skipping VS Code extensions"
+    # `brew bundle install` has no per-type skip for VS Code, so feed it the
+    # Brewfile over stdin (--file=-) with the `vscode` entries stripped out.
+    grep -v '^vscode ' "$BREWFILE" | brew bundle --file=- || log "$hint"
+  fi
 }
 
 main() {
