@@ -13,11 +13,13 @@ Running list of follow-up work. See `README.md` for current setup instructions.
       root) already bootstraps Xcode command line tools + Homebrew, then runs
       `brew bundle` to install all brews, casks, VS Code extensions, and npm
       globals. Fold the rest in next, as separate incremental commits:
-  - [ ] **Config symlinks** — link `.gitconfig`, `ghostty/`, `starship/`, and
-        `karabiner/` into place, replacing the manual `ln -s` block in
-        `README.md`. Back up any existing real file and skip when the correct
-        symlink already exists. Karabiner stays a file-level link (it writes
-        runtime data into `~/.config/karabiner/`).
+  - [x] **Config symlinks** — `install_symlinks()` links `ghostty/`,
+        `starship/starship.toml`, `karabiner/karabiner.json`, and
+        `freeze/custom.json` into `~/.config`, backing up any existing real file
+        and skipping when the correct symlink already exists. karabiner and
+        freeze stay file-level links (their dirs hold runtime/non-config data).
+        `.gitconfig` was intentionally excluded; `README.md` block updated to
+        match.
   - [ ] **Mac App Store apps via `mas`** — `brew "mas"` is now in the `Brewfile`.
         Still to do: capture IDs with `mas list` on the real machine and add the
         `mas "<name>", id:` entries for the App Store apps listed below.

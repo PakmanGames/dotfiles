@@ -39,19 +39,23 @@ See [`TODO.md`](TODO.md) for outstanding work (per-app docs, install script, App
    Some apps (Final Cut Pro, Logic Pro, Goodnotes, etc.) are App Store / Apple-only
    and aren't covered by the `Brewfile` — see `TODO.md` for the full list.
 
-3. Symlink individual configs as needed. There's no install script yet, so each
-   tool's config has to be linked manually, e.g.:
+3. Symlink your configs into place. `./install.sh` does this automatically and
+   backs up anything it would replace, or link them manually:
 
    ```bash
-   ln -s "$(pwd)/.gitconfig"            ~/.gitconfig
-   ln -s "$(pwd)/ghostty"               ~/.config/ghostty
-   ln -s "$(pwd)/starship/starship.toml" ~/.config/starship.toml
+   ln -s "$(pwd)/ghostty"                  ~/.config/ghostty
+   ln -s "$(pwd)/starship/starship.toml"   ~/.config/starship.toml
    ln -s "$(pwd)/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
+   ln -s "$(pwd)/freeze/custom.json"       ~/.config/freeze/custom.json
+   ln -s "$(pwd)/.gitconfig"               ~/.gitconfig   # not done by install.sh
    ```
 
-   Karabiner gets a file-level symlink rather than a directory-level one because
-   Karabiner-Elements writes runtime data (`assets/`, `automatic_backups/`) into
-   `~/.config/karabiner/`, which shouldn't live in the repo.
+   karabiner and freeze get file-level symlinks rather than directory-level ones
+   because their parent dirs accumulate runtime/non-config data that shouldn't
+   live in the repo (Karabiner-Elements writes `assets/` + `automatic_backups/`
+   into `~/.config/karabiner/`; `freeze/` also holds preview scripts and
+   examples). `.gitconfig` is left out of `install.sh` on purpose — link it
+   manually if you want it.
 
 ## Notes
 

@@ -7,12 +7,14 @@
 # brews, casks, npm globals, and — if you opt in at the prompt — VS Code
 # extensions (those also sync automatically when you sign in to VS Code).
 #
-# Built to grow. Later setup steps (config symlinks, Mac App Store apps via mas,
-# Ruby via ruby-install/install-macos.sh, macOS defaults) hang off the same
-# main() runner as additional idempotent functions.
+# After apps, it symlinks the repo's configs into ~/.config (backing up any real
+# files it would replace) and optionally sets up Ruby via rbenv. Remaining steps
+# (Mac App Store apps via mas, macOS defaults) hang off the same main() runner as
+# additional idempotent functions.
 #
-# Safe to re-run: the Xcode/Homebrew checks no-op when already present, and
-# brew bundle skips anything already installed.
+# Safe to re-run: the Xcode/Homebrew checks no-op when already present, brew
+# bundle skips anything already installed, and symlinks are left alone when they
+# already point at the repo.
 #
 # Usage:
 #   ./install.sh
@@ -90,6 +92,46 @@ install_apps() {
   fi
 }
 
+# Create one symlink dest -> src, preserving whatever is already at dest unless
+# it's already the correct link. Parent dirs are created as needed. Helper for
+# install_symlinks.
+link_config() {
+  local src="$1" dest="$2"
+  if [ ! -e "$src" ]; then
+    log "Skip (missing in repo): $src"
+    return 0
+  fi
+  mkdir -p "$(dirname "$dest")"
+  # Already the right link? Nothing to do. We always create absolute links, so
+  # readlink returns an absolute path to compare against src.
+  if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+    log "OK (already linked): $dest"
+    return 0
+  fi
+  # A real file/dir or a stale/broken link is in the way: move it aside rather
+  # than clobber it. -e is false for a broken symlink, so test -L as well.
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    local backup="$dest.bak-$(date +%Y%m%d%H%M%S)"
+    mv "$dest" "$backup"
+    log "Backed up existing $dest -> $backup"
+  fi
+  ln -s "$src" "$dest"
+  log "Linked $dest -> $src"
+}
+
+# Link the repo's configs into their expected locations. ghostty is a
+# whole-directory link (the dir holds only `config`); the rest are file-level
+# links because their parent dirs also accumulate runtime/non-config data that
+# must not live in the repo — karabiner writes assets/ + automatic_backups/ into
+# ~/.config/karabiner/, and freeze/ also holds preview scripts and examples.
+install_symlinks() {
+  log "Linking config files into place"
+  link_config "$REPO_ROOT/ghostty"                  "$HOME/.config/ghostty"
+  link_config "$REPO_ROOT/starship/starship.toml"   "$HOME/.config/starship.toml"
+  link_config "$REPO_ROOT/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+  link_config "$REPO_ROOT/freeze/custom.json"       "$HOME/.config/freeze/custom.json"
+}
+
 # Hand off to the standalone rbenv + Ruby installer. It's idempotent and does
 # its own Homebrew/Xcode checks, so re-running is cheap, but compiling a fresh
 # Ruby costs 10-15 minutes — hence the opt-in prompt. Run as a child process so
@@ -107,8 +149,9 @@ main() {
   ensure_xcode_clt
   ensure_homebrew
   install_apps
+  install_symlinks
   install_ruby
-  # Future steps (config symlinks, mas, macOS defaults) slot in here.
+  # Future steps (mas entries, macOS defaults) slot in here.
   log "Done — apps and tools installed."
 }
 
