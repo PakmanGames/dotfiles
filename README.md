@@ -23,14 +23,49 @@ See [`TODO.md`](TODO.md) for outstanding work (per-app docs, install script, App
 
 ## Setup
 
-1. Clone the repository:
+### Quick start (fresh Mac)
 
-   ```bash
-   git clone https://github.com/PakmanGames/dotfiles.git
-   cd dotfiles
-   ```
+`./install.sh` bootstraps a clean Mac end to end: it installs the Xcode command
+line tools and Homebrew if they're missing, installs everything in the
+`Brewfile` (brews, casks, npm globals, and — if you opt in — VS Code
+extensions), symlinks the configs into `~/.config` (backing up anything it would
+replace), and optionally sets up Ruby via rbenv. It's safe to re-run — every
+step no-ops once its work is done.
 
-2. Install macOS apps and CLI tools via the `Brewfile` (requires [Homebrew](https://brew.sh)):
+You only need to get the repo onto the machine first.
+
+**Literally clean Mac (no git yet).** macOS always ships `curl`, so download a
+tarball without needing git — `install.sh` installs the rest, git included:
+
+```bash
+cd ~
+curl -L https://github.com/PakmanGames/dotfiles/archive/refs/heads/main.tar.gz | tar xz
+cd dotfiles-main
+./install.sh
+```
+
+On the first run with no Xcode command line tools present, the script kicks off
+their GUI installer and exits. Finish that prompt, then run `./install.sh` again
+to continue.
+
+**If you already have git** (or want a clone you can pull/push):
+
+```bash
+git clone https://github.com/PakmanGames/dotfiles.git
+cd dotfiles
+./install.sh
+```
+
+> On a clean Mac, `git` is a stub that triggers the Xcode command line tools
+> install the first time you run it — finish that GUI prompt and the clone will
+> proceed.
+
+### Manual setup
+
+Prefer to run the steps yourself? The installer is just a wrapper around these.
+
+1. Install [Homebrew](https://brew.sh), then install macOS apps and CLI tools
+   via the `Brewfile`:
 
    ```bash
    brew bundle --file=./Brewfile
@@ -39,8 +74,7 @@ See [`TODO.md`](TODO.md) for outstanding work (per-app docs, install script, App
    Some apps (Final Cut Pro, Logic Pro, Goodnotes, etc.) are App Store / Apple-only
    and aren't covered by the `Brewfile` — see `TODO.md` for the full list.
 
-3. Symlink your configs into place. `./install.sh` does this automatically and
-   backs up anything it would replace, or link them manually:
+2. Symlink your configs into place:
 
    ```bash
    ln -s "$(pwd)/ghostty"                  ~/.config/ghostty
