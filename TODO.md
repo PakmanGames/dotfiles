@@ -18,8 +18,9 @@ Running list of follow-up work. See `README.md` for current setup instructions.
         `README.md`. Back up any existing real file and skip when the correct
         symlink already exists. Karabiner stays a file-level link (it writes
         runtime data into `~/.config/karabiner/`).
-  - [ ] **Mac App Store apps via `mas`** — add `brew "mas"` plus `mas "<name>", id:`
-        entries for the App Store apps listed below; capture IDs with `mas list`.
+  - [ ] **Mac App Store apps via `mas`** — `brew "mas"` is now in the `Brewfile`.
+        Still to do: capture IDs with `mas list` on the real machine and add the
+        `mas "<name>", id:` entries for the App Store apps listed below.
   - [x] **Ruby (rbenv)** — call `ruby-install/install-macos.sh` from `install.sh`
         so rbenv + the pinned Ruby are set up in the same run. *(opt-in prompt;
         runs as a child process so a failure won't abort the rest of setup.)*
