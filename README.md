@@ -91,6 +91,61 @@ Prefer to run the steps yourself? The installer is just a wrapper around these.
    examples). `.gitconfig` is left out of `install.sh` on purpose — link it
    manually if you want it.
 
+### GPG commit signing
+
+`.gitconfig` signs every commit and tag (`commit.gpgsign = true`) using the key
+in `user.signingkey`. That key lives in your GPG keyring, **not** in this repo —
+so each Mac needs its own key. `gnupg` and `pinentry-mac` come from the
+`Brewfile`; the rest is a one-time setup. These steps generate a fresh key on
+the machine (no exporting/importing from another Mac).
+
+1. Generate a key — pick `ECC (sign and encrypt)` → `Curve 25519`, and use your
+   git email so commits verify:
+
+   ```bash
+   gpg --full-generate-key
+   ```
+
+2. Point gpg-agent at the macOS GUI passphrase prompt:
+
+   ```bash
+   mkdir -p ~/.gnupg && chmod 700 ~/.gnupg
+   echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+   gpgconf --kill gpg-agent
+   ```
+
+3. Export `GPG_TTY` in your shell rc so CLI passphrase prompts work:
+
+   ```bash
+   echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
+   ```
+
+4. Update `user.signingkey` to the new key's ID. Because `~/.gitconfig` is
+   symlinked to this repo, `git config --global` edits the repo file in place —
+   commit and push so the tracked config matches the key you actually use:
+
+   ```bash
+   gpg --list-secret-keys --keyid-format=long   # copy the 16-char ID after "ed25519/"
+   git config --global user.signingkey <NEW_KEY_ID>
+   ```
+
+5. Add the **public** key to GitHub (Settings → SSH and GPG keys → New GPG key):
+
+   ```bash
+   gpg --armor --export <NEW_KEY_ID> | pbcopy
+   ```
+
+6. Verify — you should see `Good signature`:
+
+   ```bash
+   git commit --allow-empty -m "test signing" && git log --show-signature -1
+   ```
+
+> Each new key produces a new ID, so the `user.signingkey` committed here only
+> matches the Mac it was last set on. When you set up another machine, repeat
+> step 4 (and re-add its public key to GitHub) — or use a `[includeIf]` per-host
+> config if you want several machines tracked at once.
+
 ## Notes
 
 - All configurations are personalized for my workflow — back up your existing
