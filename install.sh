@@ -126,10 +126,11 @@ link_config() {
 # ~/.config/karabiner/, and freeze/ also holds preview scripts and examples.
 install_symlinks() {
   log "Linking config files into place"
-  link_config "$REPO_ROOT/ghostty"                  "$HOME/.config/ghostty"
-  link_config "$REPO_ROOT/starship/starship.toml"   "$HOME/.config/starship.toml"
-  link_config "$REPO_ROOT/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
-  link_config "$REPO_ROOT/freeze/custom.json"       "$HOME/.config/freeze/custom.json"
+  link_config "$REPO_ROOT/ghostty"                       "$HOME/.config/ghostty"
+  link_config "$REPO_ROOT/starship/starship.toml"        "$HOME/.config/starship.toml"
+  link_config "$REPO_ROOT/karabiner/karabiner.json"      "$HOME/.config/karabiner/karabiner.json"
+  link_config "$REPO_ROOT/freeze/custom.json"            "$HOME/.config/freeze/custom.json"
+  link_config "$REPO_ROOT/gnupg/gpg-agent.conf"         "$HOME/.gnupg/gpg-agent.conf"
 }
 
 # Hand off to the standalone rbenv + Ruby installer. It's idempotent and does
